@@ -1,32 +1,30 @@
 import Card from './Card.js';
 
-let suits = {
-	spade   : Array.from({length:13},(v,i)=>new Card('spade',i+1)),
-	heart   : Array.from({length:13},(v,i)=>new Card('heart',i+1)),
-	club    : Array.from({length:13},(v,i)=>new Card('club',i+1)),
-	diamond : Array.from({length:13},(v,i)=>new Card('diamond',i+1)),
-	joker   : Array.from({length:13},(v,i)=>new Card('joker',i)),
-}
+let suits = {};
 
 export default class Deck{
-	constructor(...content){
-		if (content[0]=='default') {content = ['spade','heart','club','diamond']}
-		else if (content[0]=='all') {content = ['spade','heart','club','diamond','joker']}
+	constructor(option={}){
+		let  composition = option. composition ? option. composition : 'default';
+		if ( composition=='default') { composition = ['spade','heart','club','diamond']}
+		else if ( composition=='all') { composition = ['spade','heart','club','diamond','joker']}
 
-		this.deck = content.reduce((pre,cur)=>pre.concat(suits[cur]),[]);
+		this.resize(option.reversed, option.w, option.h);
+
+		this.deck =  composition.reduce((pre,cur)=>pre.concat(suits[cur]),[]);
 	}
 
 	shuffle(){
 		this.deck.sort((a,b)=>Math.random()-.5);
+		return this.deck;
 	}
 
-	resize(w,h){
+	resize(reversed,w,h){
 		suits = {
-			spade   : Array.from({length:13},(v,i)=>new Card('spade',i+1,w,h)),
-			heart   : Array.from({length:13},(v,i)=>new Card('heart',i+1,w,h)),
-			club    : Array.from({length:13},(v,i)=>new Card('club',i+1,w,h)),
-			diamond : Array.from({length:13},(v,i)=>new Card('diamond',i+1,w,h)),
-			joker   : Array.from({length:13},(v,i)=>new Card('joker',i,w,h)),
+			spade   : Array.from({length:13},(v,i)=>new Card('spade',i+1,reversed,w,h)),
+			heart   : Array.from({length:13},(v,i)=>new Card('heart',i+1,reversed,w,h)),
+			club    : Array.from({length:13},(v,i)=>new Card('club',i+1,reversed,w,h)),
+			diamond : Array.from({length:13},(v,i)=>new Card('diamond',i+1,reversed,w,h)),
+			joker   : Array.from({length:13},(v,i)=>new Card('joker',i,reversed,w,h)),
 		}
 	}
 }

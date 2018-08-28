@@ -7,7 +7,7 @@ let set_h = card.set_h;
 const suits = ['spade','heart','club','diamond','joker'];
 
 export default class Card{
-	constructor(suit,num,w,h){
+	constructor(suit,num,reversed,w,h){
 		set_w(w);
 		set_h(h);
 		suit = suit.toLowerCase();
@@ -35,6 +35,8 @@ export default class Card{
 				 'red' : 'black';
 
 			this.image = suit == 'joker' ? UI_card['joker'](num) : Object.values(UI_card)[num](suit);
+
+			this.reversed = reversed || true;
 		}
 	}
 }

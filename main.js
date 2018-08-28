@@ -1,6 +1,6 @@
 import Deck from './js/Deck.js';
 import card from './js/UI/card.js';
-import getCenterPos from './js/items/getCenterPos';
+import getCenterPos from './js/public/getCenterPos';
 
 const CANVAS_WIDTH = 1024;
 const CANVAS_HEIGHT = 768;
@@ -85,7 +85,17 @@ let firPosY = getCenterPos([card_height,secPosY,0]);
 		posX[6],secPosY,card_width,card_height);
 })();
 
-ctx_bg.drawImage(card.cards.back(),posX[0],firPosY,card_width,card_height);
+// ctx_bg.drawImage(card.cards.back(),posX[0],firPosY,card_width,card_height);
+
+/** 邏輯 **/
+let deck = new Deck({reversed:false}).shuffle();
+let deck_columns = Array.from({length:7},(v,i)=>deck.splice(0,i+1));
+let deck_candidate = deck;
+let deck_sorting = new Array(4);
+
+let candidate = 0;
+
+deck_columns.forEach((v)=>{v[v.length-1].reversed = true});
 
 /** 卡牌区 **/
 let ctx_cards = new_canvas();
