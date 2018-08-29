@@ -22,6 +22,7 @@ let border = (function () {
 	canvas.height = h;
 	let ctx = canvas.getContext('2d');
 	ctx.fillStyle = 'white';
+	ctx.lineWidth = 2;
 
 	ctx.beginPath();
 	ctx.moveTo(r,0);
@@ -76,11 +77,11 @@ const drawSide = (ctx,str,suit)=>{
 	let suitSize = 15;
 	let paddingh = 8;
 	let paddingv = 10;
-	let fz = 15;
-	let to_suit = 15;
+	let fz = 18;
+	let to_suit = 18;
 
 	// 左上
-	ctx.font = `${fz}px Courier New`;
+	ctx.font = `${fz}px Courier New bolder`;
 	ctx.drawImage(suit,paddingh,paddingv,suitSize,suitSize);
 	ctx.fillText(str,
 		paddingh+(suitSize-ctx.measureText(str).width)/2-1,
@@ -396,7 +397,7 @@ let cards = {
 }
 
 let set_w = (nw)=>w=nw||140;
-let set_h = (nh)=>h=nh||200;
+let set_h = (nh)=>h=nh||w*200/140;
 let get_w = ()=>w;
 let get_h = ()=>h;
 

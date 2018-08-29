@@ -4,13 +4,13 @@ let suits = {};
 
 export default class Deck{
 	constructor(option={}){
-		let  composition = option. composition ? option. composition : 'default';
-		if ( composition=='default') { composition = ['spade','heart','club','diamond']}
-		else if ( composition=='all') { composition = ['spade','heart','club','diamond','joker']}
+		let composition = option.composition ? option.composition : 'default';
+		if (composition=='default') {composition = ['spade','heart','club','diamond']}
+		else if (composition=='all') {composition = ['spade','heart','club','diamond','joker']}
 
 		this.resize(option.reversed, option.w, option.h);
 
-		this.deck =  composition.reduce((pre,cur)=>pre.concat(suits[cur]),[]);
+		this.deck = composition.reduce((pre,cur)=>pre.concat(suits[cur]),[]);
 	}
 
 	shuffle(){

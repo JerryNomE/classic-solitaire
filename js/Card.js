@@ -36,7 +36,7 @@ export default class Card{
 
 			this.image = suit == 'joker' ? UI_card['joker'](num) : Object.values(UI_card)[num](suit);
 
-			this.reversed = reversed || true;
+			this.reversed = reversed == undefined ? true : reversed;
 		}
 	}
 }
