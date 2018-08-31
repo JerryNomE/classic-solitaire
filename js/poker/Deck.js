@@ -1,4 +1,5 @@
 import Card from './Card.js';
+import UI_card from './UI/card.js';
 
 let suits = {};
 
@@ -24,7 +25,7 @@ export default class Deck{
 			heart   : Array.from({length:13},(v,i)=>new Card('heart',i+1,reversed,w,h)),
 			club    : Array.from({length:13},(v,i)=>new Card('club',i+1,reversed,w,h)),
 			diamond : Array.from({length:13},(v,i)=>new Card('diamond',i+1,reversed,w,h)),
-			joker   : Array.from({length:13},(v,i)=>new Card('joker',i,reversed,w,h)),
+			joker   : Array.from({length:2},(v,i)=>new Card('joker',i,reversed,w,h)),
 		}
 	}
 }

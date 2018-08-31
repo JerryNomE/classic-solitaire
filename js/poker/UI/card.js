@@ -1,8 +1,8 @@
-import get_suitImg from './suit.js';
-import {reverse} from './suit.js';
-import mustache from './mustache.js';
-import crown1 from './crown1.js';
-import crown2 from './crown2.js';
+import get_suitImg from './suit';
+import {reverse} from './suit';
+import mustache from './mustache';
+import crown1 from './crown1';
+import crown2 from './crown2';
 
 let w = 140;
 let h = 200;
@@ -48,7 +48,7 @@ let thickBorder = (function () {
 	canvas.width = w;
 	canvas.height = h;
 	let ctx = canvas.getContext('2d');
-	ctx.lineWidth = 3;
+	ctx.lineWidth = 4;
 
 	ctx.beginPath();
 	ctx.moveTo(r,0);
@@ -67,10 +67,10 @@ let thickBorder = (function () {
 })();
 
 const shape = {
-	spade:get_suitImg('spade'),
-	heart:get_suitImg('heart'),
-	club: get_suitImg('club'),
-	diamond:get_suitImg('diamond'),
+	spade   : get_suitImg('spade'),
+	heart   : get_suitImg('heart'),
+	club    : get_suitImg('club'),
+	diamond : get_suitImg('diamond'),
 }
 
 const drawSide = (ctx,str,suit)=>{
