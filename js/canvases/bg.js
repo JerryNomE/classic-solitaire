@@ -8,23 +8,25 @@ let canvas_bg_proto = document.createElement('canvas');
 let canvas_bg_proto_size   = 100;
 let canvas_bg_proto_color1 = 'lime';
 let canvas_bg_proto_color2 = '#00dd00';
-canvas_bg_proto.width  = canvas_bg_proto_size;
-canvas_bg_proto.height = canvas_bg_proto_size;
-let ctx_bg_proto = canvas_bg_proto.getContext('2d');
-ctx_bg_proto.fillStyle = canvas_bg_proto_color1;
-ctx_bg_proto.fillRect(0,0,canvas_bg_proto_size,canvas_bg_proto_size);
-ctx_bg_proto.fillStyle = canvas_bg_proto_color2;
-ctx_bg_proto.beginPath();
-ctx_bg_proto.moveTo(canvas_bg_proto_size/2,0);
-ctx_bg_proto.lineTo(0,canvas_bg_proto_size/2);
-ctx_bg_proto.lineTo(0,canvas_bg_proto_size);
-ctx_bg_proto.lineTo(canvas_bg_proto_size,0);
-ctx_bg_proto.fill();
-ctx_bg_proto.beginPath();
-ctx_bg_proto.moveTo(canvas_bg_proto_size/2,canvas_bg_proto_size);
-ctx_bg_proto.lineTo(canvas_bg_proto_size,canvas_bg_proto_size);
-ctx_bg_proto.lineTo(canvas_bg_proto_size,canvas_bg_proto_size/2);
-ctx_bg_proto.fill();
+{
+	canvas_bg_proto.width  = canvas_bg_proto_size;
+	canvas_bg_proto.height = canvas_bg_proto_size;
+	let ctx_bg_proto = canvas_bg_proto.getContext('2d');
+	ctx_bg_proto.fillStyle = canvas_bg_proto_color1;
+	ctx_bg_proto.fillRect(0,0,canvas_bg_proto_size,canvas_bg_proto_size);
+	ctx_bg_proto.fillStyle = canvas_bg_proto_color2;
+	ctx_bg_proto.beginPath();
+	ctx_bg_proto.moveTo(canvas_bg_proto_size/2,0);
+	ctx_bg_proto.lineTo(0,canvas_bg_proto_size/2);
+	ctx_bg_proto.lineTo(0,canvas_bg_proto_size);
+	ctx_bg_proto.lineTo(canvas_bg_proto_size,0);
+	ctx_bg_proto.fill();
+	ctx_bg_proto.beginPath();
+	ctx_bg_proto.moveTo(canvas_bg_proto_size/2,canvas_bg_proto_size);
+	ctx_bg_proto.lineTo(canvas_bg_proto_size,canvas_bg_proto_size);
+	ctx_bg_proto.lineTo(canvas_bg_proto_size,canvas_bg_proto_size/2);
+	ctx_bg_proto.fill();
+}
 
 
 export default class canvas_bg {

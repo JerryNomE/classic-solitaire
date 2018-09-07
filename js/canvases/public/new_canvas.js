@@ -7,7 +7,7 @@ export default (parent) => {
 	let canvas = document.createElement('canvas');
 	canvas.width = canvas_size.width;
 	canvas.height = canvas_size.height;
-	parent.appendChild(canvas);
+	if (parent) parent.appendChild(canvas);
 
 	return canvas.getContext('2d');
 }

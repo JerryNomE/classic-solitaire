@@ -4,7 +4,7 @@ import getCenterPos from '../../public/getCenterPos';
 const CANVAS_WIDTH  = 1024;
 const CANVAS_HEIGHT = 768;
 
-const card_width  = 100;
+const card_width  = 120;
 const card_height = Math.round(card_width / UI_card.get_w() * UI_card.get_h());
 
 const secPosY = 250;
