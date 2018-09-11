@@ -11,17 +11,12 @@ let card_back = UI_cards.back();
 let solitare;
 let deck_columns, deck_candidate, deck_sorting;
 let ctx;
-let shownCards = 3;
 export default class{
 	constructor(parent){
 		this.ctx = new_canvas(parent);
 		ctx = this.ctx;
 	};
 
-
-return_shownCandidate(){
-	cabdu
-}
 	set_logic(logic){
 		solitare = logic;
 		deck_columns   = solitare.deck_columns;
@@ -102,8 +97,7 @@ return_shownCandidate(){
 	 */
 	draw_shownCandidate(nextSet = true){
 		if (candidate == 0) {return}
-		if (nextSet) {shownCards = 3 }
-		let sc = shownCards==0 ? 1 : shownCards;
+		let sc = solitare.shownCards==0 ? 1 : solitare.shownCards;
 		let s = candidate<3 ? 0 : candidate-sc;
 		let e = candidate;
 		deck_candidate.slice(s,e).forEach((v,i)=>{
@@ -111,7 +105,8 @@ return_shownCandidate(){
 		});
 	}
 
-	move_shownCandidate    () {shownCards -= 1; draw_shownCandidate(false)}
-	return_shownCandidate  () {shownCards += 1; draw_shownCandidate(false)}
-	confirm_shownCandidate () {shownCards >= 1 ? shownCards : 1; draw_shownCandidate(false)}
+	// 之后把这段移到逻辑做
+	move_shownCandidate    () {}
+	return_shownCandidate  () {solitare.shownCards += 1; draw_shownCandidate(false)}
+	confirm_shownCandidate () {solitare.shownCards >= 1 ? solitare.shownCards : 1; draw_shownCandidate(false)}
 }

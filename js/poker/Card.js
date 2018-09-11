@@ -25,18 +25,20 @@ export default class Card{
 			// 4色1~13
 			// 大鬼1 小鬼0
 			this.suit = suit;
-
 			this.num = num;
+			this.image = suit == 'joker' ? UI_card['joker'](num) : Object.values(UI_card)[num](suit);
 
 			this.word = suit == 'joker' ? 'joker' : num==13 ? 'K' : num==12 ? 'Q' : num==11 ? 'J' : num;
-
 			this.color = (suit == suits[1] || suit == suits[3]
 				|| (suit == suits[4] && num != 0)) ?
 				 'red' : 'black';
 
-			this.image = suit == 'joker' ? UI_card['joker'](num) : Object.values(UI_card)[num](suit);
-
 			this.reversed = reversed == undefined ? true : reversed;
+			this.operable = false;
+			this.group = null;
+
+			this.x = -1;
+			this.y = -1;
 		}
 	}
 }
