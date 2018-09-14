@@ -7,9 +7,14 @@ import Canvas_activeCard from '../canvases/activeCard.js';
 import {set_logic as zone_set_logic, zone_candidate, zone_shownCandidate, zone_columns, zone_sorting} from './public/zones';
 
 let deck = new Deck();
-zone_shownCandidate.r = zone_shownCandidate.R();
-zone_columns.forEach((v)=>{v.b=v.B()});
+const resetZone = ()=>{
+	zone_shownCandidate.r = zone_shownCandidate.R();
+	zone_columns.forEach((v)=>{v.b=v.B()});
+}
+resetZone();
 // const _candidate = Symbol.for('candidate'), _columns = Symbol.for('columns');
+
+
 
 // 逻辑相关
 let logic = {
@@ -25,6 +30,9 @@ const init_deck = ()=>{
 	logic.deck_sorting   = new Array(4);
 	logic.candidate      = 0;
 }
+
+
+
 
 // 获取动画区域相关
 let canvasPos;
@@ -43,6 +51,9 @@ const set_canvasSize = (dom)=>{
 		dom.style.height = `${Math.round(window.innerWidth * CANVAS_SIZE.height/CANVAS_SIZE.width)}px`;
 	}
 }
+
+
+
 
 // 获取鼠标位置相关
 let mouse;
@@ -107,9 +118,15 @@ const inZone = ({x,y})=>{
 	else return null;
 }
 
+
+
+
 // 初始化canvas
 const stage = document.getElementById('stage');
 let canvases = {};
+
+
+
 
 // 鼠标动作相关
 let handler = {
@@ -127,20 +144,35 @@ let handler = {
 	 mouseDown(x,y){
 		if (mouse = inCanvas()) {
 			if (mouse = inZone(mouse)) {
+				/**
+				 * mouse = {
+				 * zone, 选中区域
+				 * Cindex, 选中的卡的编号
+				 * Zindex, 选中的区域的编号
+				 * }
+				 */
 				if (mouse.zone=='candidate') {
 					nextCandidate();
 				}
+
 				else if (mouse.zone=='shown') {
-					let activeCards = logic.deck_candidate.slice(mouse.Cindex, mouse.Cindex+1);
+					let activeCards = [logic.deck_candidate[mouse.Cindex]];
+
+					let cx = zone_shownCandidate.l + mouse.Cindex * CARD_SIZE.marginLeft;
+					canvases.activeCard.setImage(cx, CARD_SIZE.firPosY, activeCards);
+
 					if (mouse.Cindex==logic.shownCards - 1) {
 						logic.shownCards -= 1;
 						canvases.cards.draw_shownCandidate(false);
-						canvases.activeCard.setImage(activeCards);
 						// 添加mousemove的listener
 					}
-					else {
-						canvases.activeCard.setImage(activeCards);
-					}
+				}
+
+				else if (mouse.zone=='sorting') {
+					let col = logic.deck_sorting[mouse.Zindex];
+					let activeCards = col[col.length - 1];
+
+
 				}
 			}
 		}
@@ -162,6 +194,8 @@ let handler = {
 		符不符合放置到排序区的规则，符合则放过去
 	 */
 }
+
+
 
 
 // 类相关

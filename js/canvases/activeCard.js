@@ -10,15 +10,16 @@ export default class canvas_activeCard {
 		this.ctx = new_canvas(parent);
 	}
 
-	setImage(...cards){
-		image.height = card_size.height + (cards.lenght-1) * card_size.marginTop;
-		cards.forEach((v)=>image.drawImage(v.image,
-			0, (cards.lenght-1) * card_size.marginTop, card_size.width, card_size.height))
-	}
+	setImage(x,y,cards){
+		this.ctx.clearRect(0, 0, canvas_size.width, canvas_size.height);
 
-	setPos(x,y){
 		pos.x = x;
 		pos.y = y;
+		image.height = card_size.height + (cards.lenght-1) * card_size.marginTop;
+		cards.forEach((v)=>image.drawImage(v.image,
+			0, (cards.lenght-1) * card_size.marginTop, card_size.width, card_size.height));
+
+		this.move(0,0);
 	}
 
 	/**
@@ -26,7 +27,7 @@ export default class canvas_activeCard {
 	 * @param  {int} h 移动的水平距离
 	 * @param  {int} v 移动的竖直距离
 	 */
-	move(h, v){
+	move(h=0, v=0){
 		this.ctx.clearRect(pos.x, pos.y, image.width, image.height);
 		pos.x += h;
 		pos.y += v;
