@@ -14,6 +14,7 @@ var TurretListSence = new Phaser.Class({
 
     create: function ()
     {
+    	let self = this
         this.graphics = this.add.graphics();
         // this.graphics.lineStyle(1, 0xffffff);
         // this.graphics.fillStyle(0x031f4c, 1);
@@ -23,15 +24,48 @@ var TurretListSence = new Phaser.Class({
 	    // var bg = this.add.sprite(32,32,'turretButton').setScale(0.32).play('over');
 
         for (var i = 0; i < 10; i++) {
-        	let container = this.add.container(GRID.W * i, 0);
+        	let j = i;
+        	let container = this.add.container(GRID.W * j, 0);
         	let bg = this.add.sprite(GRID.W/2, GRID.H/2, 'turretButton').setScale(0.32).play('out');
         	container.add(bg)
 
-        	if (global.turretList[i]!==undefined) {
-        		let icon = this.add.image(GRID.W/2, GRID.H / 2, global.turretList[i])
+        	let img = global.turretList[j];
+        	if (img!==undefined) {
+        		let icon = this.add.image(GRID.W/2, GRID.H / 2, img)
+        		icon.setScale(40/icon.width)
         		container.add(icon)
         	}
         	this.menus.add(container)
+
+        	// 设置交互
+        	container.setInteractive(new Phaser.Geom.Rectangle(0, 0, GRID.W, GRID.H), Phaser.Geom.Rectangle.Contains)
+
+		    container.on('pointerover', () => {
+		    	if (global.turretSelected !== j) bg.play('over');
+		    	else if (global.pointerDown) bg.play('down');
+		    },container);
+
+		    container.on('pointerout', () => {
+		    	if (global.turretSelected === j) bg.play('outA');
+		        else bg.play('out');
+		    },container);
+
+		    container.on('pointerdown', () => {
+		    	// global.pointerDown = true
+		    	if (global.turretSelected !== j) bg.play('down');
+		    },container);
+
+		    container.on('pointerup', (p, o) => {
+		    	if (global.turretSelected !== j){
+		    		global.turretSelected = j
+		    		self.menus.emit('turretSelectionChange',o)
+		    	}
+		    },container);
+
+		    self.menus.on('turretSelectionChange', (o) => {
+		    	if (global.turretSelected === j) bg.play('outA');
+		    	else bg.play('out');
+		    },container);
         }
     },
 })

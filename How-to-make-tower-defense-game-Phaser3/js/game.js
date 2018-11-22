@@ -17,8 +17,8 @@ var BootScene = new Phaser.Class({
 	{
 		// load resources
 		this.load.image('bullet', './How-to-make-tower-defense-game-Phaser3/assets/bullet.png');
-		this.load.image('turret2', './How-to-make-tower-defense-game-Phaser3/assets/turreta.png');
-		this.load.image('turret2bullet', './How-to-make-tower-defense-game-Phaser3/assets/turretaBullet.png');
+		this.load.image('turret2', './How-to-make-tower-defense-game-Phaser3/assets/turret2.png');
+		this.load.image('turret2bullet', './How-to-make-tower-defense-game-Phaser3/assets/turret2Bullet.png');
 		this.load.atlas('sprites', './How-to-make-tower-defense-game-Phaser3/assets/spritesheet.png', './How-to-make-tower-defense-game-Phaser3/assets/spritesheet.json');
 		this.load.spritesheet('turretButton','./How-to-make-tower-defense-game-Phaser3/assets/turretButton.png',{ frameWidth: 200, frameHeight: 200})
 	},
@@ -36,8 +36,23 @@ var BootScene = new Phaser.Class({
 			frameRate: 10
 		});
 		this.anims.create({
-			key: 'active',
+			key: 'down',
 			frames: [ { key: 'turretButton', frame: 2 } ],
+			frameRate: 10
+		});
+		this.anims.create({
+			key: 'outA',
+			frames: [ { key: 'turretButton', frame: 3 } ],
+			frameRate: 10
+		});
+		this.anims.create({
+			key: 'overA',
+			frames: [ { key: 'turretButton', frame: 4 } ],
+			frameRate: 10
+		});
+		this.anims.create({
+			key: 'downA',
+			frames: [ { key: 'turretButton', frame: 5 } ],
 			frameRate: 10
 		});
 		this.scene.start("MainSence");

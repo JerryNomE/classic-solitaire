@@ -49,6 +49,9 @@ var MainSence = new Phaser.Class({
 
 	    this.input.on('pointerdown', placeTurret);
 
+	    this.input.on('pointerdown',()=>global.pointerDown = true)
+	    this.input.on('pointerup',()=>global.pointerDown = false)
+
 	    this.scene.launch("TurretListSence");
 	},
 
