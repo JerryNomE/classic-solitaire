@@ -31,7 +31,7 @@ var TurretListSence = new Phaser.Class({
 
         	let img = global.turretList[j];
         	if (img!==undefined) {
-        		let icon = this.add.image(GRID.W/2, GRID.H / 2, img)
+        		let icon = this.add.image(GRID.W/2, GRID.H / 2, (img.sheet?img.sheet:img.img), (img.sheet?img.img:undefined))
         		icon.setScale(40/icon.width)
         		container.add(icon)
         	}
@@ -52,17 +52,17 @@ var TurretListSence = new Phaser.Class({
 
 		    container.on('pointerdown', () => {
 		    	// global.pointerDown = true
-		    	if (global.turretSelected !== j) bg.play('down');
+		    	if (global.turretSelected !== j && global.turretList[j] !== undefined) bg.play('down');
 		    },container);
 
-		    container.on('pointerup', (p, o) => {
-		    	if (global.turretSelected !== j){
+		    container.on('pointerup', () => {
+		    	if (global.turretSelected !== j && global.turretList[j] !== undefined){
 		    		global.turretSelected = j
-		    		self.menus.emit('turretSelectionChange',o)
+		    		self.menus.emit('turretSelectionChange')
 		    	}
 		    },container);
 
-		    self.menus.on('turretSelectionChange', (o) => {
+		    self.menus.on('turretSelectionChange', () => {
 		    	if (global.turretSelected === j) bg.play('outA');
 		    	else bg.play('out');
 		    },container);

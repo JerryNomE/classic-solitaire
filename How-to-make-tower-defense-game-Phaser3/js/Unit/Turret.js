@@ -28,6 +28,9 @@ var Turret = new Phaser.Class({
         {
             Phaser.GameObjects.Image.call(this, scene, 0, 0, 'sprites', 'turret');
             this.nextTic = 0;
+            this.cd = 100;
+            this.price = 0;
+            this.bullet = 'bullet';
         },
         place: function(i, j) {
             this.y = i * GRID.H + GRID.H/2;
@@ -46,7 +49,7 @@ var Turret = new Phaser.Class({
         {
             if(time > this.nextTic) {
                 this.fire();
-                this.nextTic = time + 1000;
+                this.nextTic = time + this.cd;
             }
         }
 });

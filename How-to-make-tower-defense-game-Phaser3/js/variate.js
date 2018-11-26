@@ -2,7 +2,7 @@ var path = null;
 var turrets = [];
 var enemies = [];
 var bullets = [];
-var turretList = [,'turret','turret2'];
+var turretList = [,{sheet:'sprites',img:'turret'},{img:'turret2'}];
 var turretSelected = -1;
 var pointerDown = false;
 
